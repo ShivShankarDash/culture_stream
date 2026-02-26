@@ -1,0 +1,24 @@
+{
+  "name": "culture-stream-backend",
+  "version": "1.0.0",
+  "description": "Real-time behavioral monitoring for organizational culture",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": ["culture", "detection", "metrics"],
+  "author": "Culture Stream Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "nodemon": "^2.0.0"
+  }
+}

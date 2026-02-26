@@ -1,0 +1,13 @@
+{
+  "name": "culture-stream-frontend",
+  "version": "1.0.0",
+  "description": "Culture Stream visualization - rope animation + metrics",
+  "main": "public/index.html",
+  "scripts": {
+    "start": "python3 -m http.server 5555",
+    "dev": "python3 -m http.server 5555"
+  },
+  "keywords": ["visualization", "culture", "rope"],
+  "author": "Culture Stream Team",
+  "license": "MIT"
+}

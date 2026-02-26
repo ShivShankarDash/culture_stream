@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culture Stream - Real-Time Culture Mutation Detector</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Culture Stream</h1>
+      <p>Real-time behavioral monitoring for organizational culture</p>
+    </header>
+
+    <main>
+      <section id="simulation">
+        <h2>8-Week Culture Degradation & Recovery</h2>
+        
+        <div id="controls">
+          <button id="start-btn">Start Simulation</button>
+          <button id="pause-btn" disabled>Pause</button>
+          <button id="reset-btn" disabled>Reset</button>
+          <label for="speed">Speed: <input type="range" id="speed" min="0.5" max="3" value="1" step="0.5"></label>
+        </div>
+
+        <div id="visualization">
+          <canvas id="rope-canvas" width="800" height="400"></canvas>
+          <div id="metrics-display"></div>
+        </div>
+
+        <div id="diagnostic-box">
+          <h3>Diagnostic Information</h3>
+          <div id="week-info"></div>
+          <div id="mutation-info"></div>
+          <div id="root-cause"></div>
+          <div id="suggestion"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../src/app.js"></script>
+</body>
+</html>
