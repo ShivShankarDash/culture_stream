@@ -5,41 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Culture Stream - Real-Time Culture Mutation Detector</title>
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="../src/app.ts"></script>
 </head>
 <body>
   <div id="container">
     <header>
-      <h1>Culture Stream</h1>
+      <h1>🌿 Culture Stream</h1>
       <p>Real-time behavioral monitoring for organizational culture</p>
+      <p class="subtitle">8-Week Degradation & Recovery Simulation</p>
     </header>
 
     <main>
       <section id="simulation">
-        <h2>8-Week Culture Degradation & Recovery</h2>
-        
-        <div id="controls">
-          <button id="start-btn">Start Simulation</button>
-          <button id="pause-btn" disabled>Pause</button>
-          <button id="reset-btn" disabled>Reset</button>
-          <label for="speed">Speed: <input type="range" id="speed" min="0.5" max="3" value="1" step="0.5"></label>
+        <div id="controls" class="controls-panel">
+          <button id="start-btn" class="btn btn-primary">▶️ Start Simulation</button>
+          <button id="pause-btn" class="btn btn-secondary" disabled>⏸️ Pause</button>
+          <button id="reset-btn" class="btn btn-secondary" disabled>🔄 Reset</button>
+          
+          <div class="control-group">
+            <label for="speed">Speed:</label>
+            <input type="range" id="speed" min="0.5" max="3" value="1" step="0.1">
+            <span id="speed-value">1x</span>
+          </div>
         </div>
 
-        <div id="visualization">
-          <canvas id="rope-canvas" width="800" height="400"></canvas>
-          <div id="metrics-display"></div>
+        <div id="visualization" class="visualization-panel">
+          <div class="canvas-wrapper">
+            <canvas id="rope-canvas" width="1000" height="400"></canvas>
+          </div>
+          
+          <div id="metrics-display" class="metrics-grid">
+            <!-- Metrics will be injected here -->
+          </div>
         </div>
 
-        <div id="diagnostic-box">
-          <h3>Diagnostic Information</h3>
-          <div id="week-info"></div>
-          <div id="mutation-info"></div>
-          <div id="root-cause"></div>
-          <div id="suggestion"></div>
+        <div id="diagnostic-box" class="diagnostic-panel">
+          <h3>🔍 Diagnostic Information</h3>
+          <div class="diagnostic-grid">
+            <div id="week-info" class="diagnostic-item">
+              <span class="label">Week</span>
+              <span class="value" id="week-value">-</span>
+            </div>
+            <div id="mutation-info" class="diagnostic-item">
+              <span class="label">Mutation Type</span>
+              <span class="value" id="mutation-value">-</span>
+            </div>
+            <div id="state-info" class="diagnostic-item">
+              <span class="label">State</span>
+              <span class="value" id="state-value">-</span>
+            </div>
+            <div id="severity-info" class="diagnostic-item">
+              <span class="label">Severity</span>
+              <span class="value" id="severity-value">-</span>
+            </div>
+          </div>
+          
+          <div id="root-cause" class="diagnostic-section">
+            <h4>Root Cause</h4>
+            <p id="root-cause-text">-</p>
+          </div>
+          
+          <div id="suggestion" class="diagnostic-section">
+            <h4>Suggested Action</h4>
+            <p id="suggestion-text">-</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="legend" class="legend">
+        <h3>Legend</h3>
+        <div class="legend-items">
+          <div class="legend-item">
+            <div class="legend-color healthy"></div>
+            <span>Healthy (Week 1-2)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color warning"></div>
+            <span>Warning (Week 3-4)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color critical"></div>
+            <span>Critical (Week 5-6)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color recovery"></div>
+            <span>Recovery (Week 7-8)</span>
+          </div>
         </div>
       </section>
     </main>
-  </div>
 
-  <script src="../src/app.js"></script>
+    <footer>
+      <p>Culture Stream v1.0 • TypeScript + anime.js • Softway Hackathon 2026</p>
+    </footer>
+  </div>
 </body>
 </html>

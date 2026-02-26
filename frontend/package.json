@@ -1,13 +1,26 @@
 {
   "name": "culture-stream-frontend",
   "version": "1.0.0",
-  "description": "Culture Stream visualization - rope animation + metrics",
+  "description": "Culture Stream visualization - rope animation + metrics (TypeScript + anime.js)",
   "main": "public/index.html",
+  "type": "module",
   "scripts": {
-    "start": "python3 -m http.server 5555",
-    "dev": "python3 -m http.server 5555"
+    "dev": "bunx vite",
+    "build": "bunx vite build",
+    "preview": "bunx vite preview",
+    "type-check": "tsc --noEmit"
   },
-  "keywords": ["visualization", "culture", "rope"],
+  "keywords": ["visualization", "culture", "rope", "typescript", "anime"],
   "author": "Culture Stream Team",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "anime": "^3.2.1",
+    "axios": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "vite": "latest",
+    "@types/node": "latest",
+    "@types/anime": "latest"
+  }
 }
