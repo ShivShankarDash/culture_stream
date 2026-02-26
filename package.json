@@ -1,0 +1,16 @@
+{
+  "name": "culture-stream-demo",
+  "version": "1.0.0",
+  "description": "Culture Stream - Real-time culture mutation detector",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["culture", "rope", "animation"],
+  "author": "Shiv Shankar Dash",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
