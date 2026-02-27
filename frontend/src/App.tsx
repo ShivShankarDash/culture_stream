@@ -2,8 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import TimelineCanvas from './components/TimelineCanvas'
 import FloatingPanel from './components/FloatingPanel'
 import DiagnosticsDrawer, { DRAWER_WIDTH } from './components/DiagnosticsDrawer'
-import { startSimulation as apiStart, getWeekData } from './api/client'
-import WEEK_DATA from './data/weekData'
+import { startSimulation as apiStart, getWeekData, type BackendWeekData } from './api/client'
 import type { WeekData } from './types'
 
 export default function App() {
@@ -42,8 +41,11 @@ export default function App() {
     try {
       const res = await apiStart()
       simId = res.simulation_id
-    } catch {
-      console.warn('Backend unavailable, using mock data')
+    } catch (err) {
+      console.error('Failed to start simulation, backend unavailable', err)
+      runningRef.current = false
+      setIsRunning(false)
+      return
     }
 
     for (let week = 1; week <= 8; week++) {
@@ -51,35 +53,34 @@ export default function App() {
       while (pausedRef.current && runningRef.current) await sleep(100)
       if (!runningRef.current) break
 
-      let data: WeekData
-      if (simId) {
-        try {
-          const raw = await getWeekData(simId, week) as Record<string, any>
-          data = {
-            week: raw.week,
-            state: raw.status,
-            metrics: {
-              silos: raw.metrics.silosScore,
-              sentiment: raw.metrics.sentiment,
-              response_time: raw.metrics.responseTimeHours,
-              burnout_risk: raw.metrics.burnoutRisk,
-            },
-            mutations: raw.mutations || [],
-            diagnosis: raw.diagnosis,
-            sampleMessages: raw.sampleMessages || [],
-            root_cause: raw.diagnosis?.current || '',
-            suggestion: raw.diagnosis?.suggestion || '',
-            messageCount: raw.messageCount,
-          }
-        } catch {
-          data = WEEK_DATA[week - 1]
+      if (!simId) break
+
+      try {
+        const raw: BackendWeekData = await getWeekData(simId, week)
+        const data: WeekData = {
+          week: raw.week,
+          state: raw.status,
+          metrics: {
+            silos: raw.metrics.silosScore,
+            sentiment: raw.metrics.sentiment,
+            response_time: raw.metrics.responseTimeHours,
+            burnout_risk: raw.metrics.burnoutRisk,
+          },
+          mutations: raw.mutations || [],
+          diagnosis: raw.diagnosis,
+          sampleMessages: raw.sampleMessages || [],
+          root_cause: raw.diagnosis?.current || '',
+          suggestion: raw.diagnosis?.suggestion || '',
+          messageCount: raw.messageCount,
         }
-      } else {
-        data = WEEK_DATA[week - 1]
+
+        setWeekData(data)
+      } catch (err) {
+        console.error(`Failed to fetch week ${week}`, err)
+        break
       }
 
-      setWeekData(data)
-      await sleep(7000 / speedRef.current)
+      await sleep(20000 / speedRef.current)
     }
 
     runningRef.current = false
