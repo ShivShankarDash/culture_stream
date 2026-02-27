@@ -5,6 +5,13 @@ export interface BackendWeekMetrics {
   sentiment: number
   responseTimeHours: number
   burnoutRisk: number
+  crossTeamPercentage: number
+  lateNightPercentage: number
+  blameScore: number
+  trustScore: number
+  productivity: number
+  wlb: number
+  workSatisfaction: number
 }
 
 export interface BackendMutation {

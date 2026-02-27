@@ -5,6 +5,13 @@ export interface Metrics {
   sentiment: number
   response_time: number
   burnout_risk: number
+  crossTeamPercentage: number
+  lateNightPercentage: number
+  blameScore: number
+  trustScore: number
+  productivity: number
+  wlb: number
+  workSatisfaction: number
 }
 
 export interface Mutation {
@@ -18,6 +25,7 @@ export interface Diagnosis {
   current: string
   alert: string | null
   suggestion: string
+  steps?: string[]
 }
 
 export interface WeekData {
