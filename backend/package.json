@@ -1,0 +1,15 @@
+{
+  "name": "culture-stream-backend",
+  "version": "1.0.0",
+  "description": "Culture Stream mutation detection engine",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts"
+  },
+  "keywords": ["culture", "detection", "metrics"],
+  "author": "Shiv Shankar Dash",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

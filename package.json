@@ -1,16 +1,14 @@
 {
-  "name": "culture-stream-demo",
+  "name": "culture-stream",
   "version": "1.0.0",
+  "private": true,
   "description": "Culture Stream - Real-time culture mutation detector",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "dev:backend": "cd backend && bun run dev",
+    "dev:frontend": "cd frontend && bun run dev",
+    "install:all": "cd backend && bun install && cd ../frontend && bun install"
   },
-  "keywords": ["culture", "rope", "animation"],
+  "keywords": ["culture", "hackathon", "mutation-detection"],
   "author": "Shiv Shankar Dash",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+  "license": "MIT"
 }
