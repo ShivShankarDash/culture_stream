@@ -20,7 +20,9 @@ function notFound(msg: string): Response {
 
 const server = Bun.serve({
   port: PORT,
-  fetch(req) {
+  // Increase per-request idle timeout so long Gemini calls don't get cut off
+  idleTimeout: 60,
+  async fetch(req) {
     const url = new URL(req.url)
     const path = url.pathname
 
@@ -46,7 +48,7 @@ const server = Bun.serve({
       return json({
         simulation_id: sim.id,
         total_weeks: 8,
-        week_1_data: sim.weeks[0],
+        week_1_data: null,
       })
     }
 
@@ -55,7 +57,7 @@ const server = Bun.serve({
     if (weekMatch && req.method === 'GET') {
       const [, simId, weekStr] = weekMatch
       const week = parseInt(weekStr)
-      const data = getWeekData(simId, week)
+      const data = await getWeekData(simId, week)
       if (!data) return notFound('Simulation or week not found')
       return json(data)
     }

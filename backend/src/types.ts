@@ -29,6 +29,20 @@ export interface Message {
   isWeekend: boolean
 }
 
+export interface MessageMetrics {
+  silosScore: number
+  sentiment: number
+  responseTimeHours: number
+  burnoutRisk: number
+  crossTeamPercentage: number
+  lateNightPercentage: number
+  blameScore: number
+  trustScore: number
+  productivity: number
+  wlb: number
+  workSatisfaction: number
+}
+
 export interface WeekMetrics {
   week: number
   silosScore: number
@@ -39,6 +53,10 @@ export interface WeekMetrics {
   crossTeamPercentage: number
   lateNightPercentage: number
   blameScore: number
+  trustScore: number
+  productivity: number
+  wlb: number
+  workSatisfaction: number
 }
 
 export interface Mutation {
